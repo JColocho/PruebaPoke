@@ -61,7 +61,7 @@ let showingFavorites = false;
 let pokemons;
 async function getPokeJSON() {
     try {
-        const response = await fetch("../JavaScript/dataPokemon.json");
+        const response = await fetch("JavaScript/dataPokemon.json");
         pokemons = await response.json();
         console.log(pokemons)
         return pokemons;
