@@ -61,15 +61,26 @@ let showingFavorites = false;
 let pokemons;
 async function getPokeJSON() {
     try {
+        // Asegura la ruta correcta al archivo (ajusta según tu estructura en GitHub Pages)
         const response = await fetch("JavaScript/dataPokemon.json");
-        pokemons = await response.json();
-        console.log(pokemons)
+
+        // Verifica que la respuesta sea OK (status 200)
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status} - ${response.statusText}`);
+        }
+
+        // Intenta convertir la respuesta en JSON
+        const pokemons = await response.json();
+
+        console.log(pokemons);
         return pokemons;
-    }
-    catch (error) {
-        console.error('Error al cargar los pokemons: ', error)
+
+    } catch (error) {
+        console.error('Error al cargar los pokemons:', error);
+        return []; // Devuelve un array vacío para evitar más fallos
     }
 }
+
 
 getPokeJSON()
 
